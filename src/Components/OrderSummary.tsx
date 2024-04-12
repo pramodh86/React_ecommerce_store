@@ -1,12 +1,20 @@
+import { useEffect, useState } from "react"
+
+interface Props{
+    total:number
+}
 
 
-function OrderSummary() {
+function OrderSummary( {total}:Props) {
+
+  
+    
   return (
     <div className="order-summary">
                 <h3>Order summary</h3>
                 <div className="total-wrapper margin-from-the-top-37">
                     <div className="sub-total">Sub total</div>
-                    <div className="value" id="id-sub-total">$00.00</div>
+                    <div className="value" id="id-sub-total"><h2>{Math.round(total*100)/100}</h2></div>
                 </div>
                 <div className="total-wrapper margin-from-the-top-20">
                     <div className="sub-total">Shipping</div>

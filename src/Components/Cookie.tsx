@@ -9,6 +9,7 @@ interface Props {
     title: string;
     price: number;
     image: string;
+    itemCount:number;
     },
     
     cookieName:string
@@ -16,16 +17,21 @@ interface Props {
 
 }
 
-export function getCookieValue(cookieName:string) {
-    
-    interface emptyArrayType {
 
-        id: number;
-        title: string;
-        price: number;
-        image: string;
-    }
-    let emptyArray: emptyArrayType[]  = []
+interface itemlist{
+
+    id: number;
+    title: string;
+    price: number;
+    image: string;
+    itemCount:number;
+
+}
+
+export function  getCookieValue(cookieName:string) {
+    
+   
+    
     const name = cookieName + "=";
     const decodedCookie = decodeURIComponent(document.cookie);
     const cookieArray = decodedCookie.split(';');
@@ -40,7 +46,7 @@ export function getCookieValue(cookieName:string) {
                 return JSON.parse(cookieValue); // Parse the cookie value as JSON
             } catch (error) {
                 console.error("Error parsing cookie value:", error);
-                return emptyArray; // Return null if there's an error parsing the JSON
+                return null; // Return null if there's an error parsing the JSON
             }
         }
     }
@@ -92,5 +98,40 @@ export function setCookie({selectedItems,cookieName}:Props) {
     
 
  
+}
+
+export function updateCookie(cookieName:string, list:itemlist[]){
+ 
+
+const cookies = new Cookies();
+cookies.remove(cookieName);
+cookies.set(cookieName, JSON.stringify(list),{ expires: new Date('9999-12-31T23:59:59') });
+
+}
+
+
+export async function   getCookieValueAsync(cookieName:string): Promise<itemlist[]> {
+    
+   
+    const emptyArray:itemlist[] = []
+    const name = cookieName + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(';');
+    for (let i = 0; i < cookieArray.length; i++) {
+        let cookie = cookieArray[i];
+        while (cookie.charAt(0) == ' ') {
+            cookie = cookie.substring(1);
+        }
+        if (cookie.indexOf(name) == 0) {
+            const cookieValue = cookie.substring(name.length, cookie.length);
+            try {
+                return JSON.parse(cookieValue); // Parse the cookie value as JSON
+            } catch (error) {
+                console.error("Error parsing cookie value:", error);
+                return emptyArray; // Return null if there's an error parsing the JSON
+            }
+        }
+    }
+    return emptyArray; // Return null if the cookie is not found
 }
 

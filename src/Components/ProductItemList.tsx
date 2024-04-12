@@ -34,7 +34,8 @@ function ProductItemList() {
     let addItemToBucket = (item:product) =>{
 
         let { id, title, price, image } = item;
-        let cookieItem = { id, title, price, image };
+        let itemCount = 1;
+        let cookieItem = { id, title, price, image,itemCount };
         let cookieName = "Pramodh";
 
         setCookie( {selectedItems:cookieItem ,cookieName:cookieName})
