@@ -4,6 +4,11 @@ import  { useEffect, useState } from 'react'
 import axios from 'axios'
 import loadingGIF from "../images/loading.gif"
 import {setCookie} from './Cookie'
+import { ProductCount } from './ProductCountContext'
+import { useContext } from 'react'
+import { CookieDelete } from "./DeleteCookieContext"
+
+
 
 interface product {
 
@@ -28,6 +33,9 @@ function ProductItemList() {
     let [data, setData] = useState<product[]>([])
     let [error, setError] = useState(false)
     let [loading, setLoading] = useState(true)
+    let productContext = useContext(ProductCount)
+    let deleteCookieContext = useContext(CookieDelete)
+    
     let baseURL = "https://fakestoreapi.com/products"
 
 
@@ -38,7 +46,14 @@ function ProductItemList() {
         let cookieItem = { id, title, price, image,itemCount };
         let cookieName = "Pramodh";
 
-        setCookie( {selectedItems:cookieItem ,cookieName:cookieName})
+        let selectedItemCount = setCookie( {selectedItems:cookieItem ,cookieName:cookieName})
+        if(selectedItemCount !== -1)
+            {
+                
+                productContext.setCount(selectedItemCount)
+                deleteCookieContext.setCookieDelete(false)
+                console.log(`item count ${selectedItemCount}`)
+            }
 
 
 
@@ -87,7 +102,7 @@ function ProductItemList() {
             <div id="container" className="container">
 
                 {data.map((item, index) => {
-                    return (index === 1 ? (
+                    return (index === 0 ? (
                         <div className="item margin-from-bottom" key={index}>
                             <div className="item-img">
                                 <img src={item.image} alt=""></img>

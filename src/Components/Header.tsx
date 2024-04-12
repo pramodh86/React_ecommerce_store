@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 
 function Header() {
@@ -10,7 +11,7 @@ function Header() {
                 organically grown food.
             </div>
             <div className="browse-button">
-                <a href="product.html">Browse our shop</a>
+             <Link to={"/product"}>Browse our shop</Link>
             </div>
         </div>
     </header>

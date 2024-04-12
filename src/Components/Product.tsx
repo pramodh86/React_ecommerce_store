@@ -17,6 +17,8 @@ function Product() {
    <NavBar></NavBar>
    <ProductDescription></ProductDescription>
    <ProductItemList></ProductItemList>
+   
+   
 
    </>
   )

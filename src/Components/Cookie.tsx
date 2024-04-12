@@ -55,7 +55,7 @@ export function  getCookieValue(cookieName:string) {
 
 
 
-export function setCookie({selectedItems,cookieName}:Props) {
+export function setCookie({selectedItems,cookieName}:Props):number {
 
     
     const cookies = new Cookies();
@@ -67,6 +67,7 @@ export function setCookie({selectedItems,cookieName}:Props) {
 
         selectedItemArray.push(selectedItems)
         cookies.set(cookieName, JSON.stringify(selectedItemArray),{ expires: new Date('9999-12-31T23:59:59') });
+        return 1;
         
         
     }
@@ -86,11 +87,15 @@ export function setCookie({selectedItems,cookieName}:Props) {
         {
             AlreadySelectedItems.push(selectedItems);
             cookies.set(cookieName, JSON.stringify(AlreadySelectedItems),{ expires: new Date('9999-12-31T23:59:59') });
+            return AlreadySelectedItems.length;
             
 
+        }else{
+
+            return -1
         }
        
-       console.log(AlreadySelectedItems)
+       
        
              
 
@@ -133,5 +138,14 @@ export async function   getCookieValueAsync(cookieName:string): Promise<itemlist
         }
     }
     return emptyArray; // Return null if the cookie is not found
+}
+
+
+
+export function deleteCookie(cookieName:string)
+{
+    const cookies = new Cookies();
+    cookies.remove(cookieName);
+    return true
 }
 

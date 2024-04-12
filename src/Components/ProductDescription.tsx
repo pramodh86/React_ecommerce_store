@@ -1,12 +1,14 @@
 
 
 function ProductDescription() {
+
+  const currentDate = new Date();
   return (
     <section className="product-main-header" >
         <div className="container">
             <div className="product-header">
                 <h2>Produce</h2>
-                <h3><span>Fresh</span> - August 21,2023 </h3>
+                <h3><span>Fresh</span> - {currentDate.toLocaleDateString()} </h3>
             </div>
             <div className="product-btn-list">
                 <a className="btn-anchor product-btn-one" href="#">Default</a>

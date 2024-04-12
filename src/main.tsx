@@ -6,6 +6,9 @@ import Home from './Components/Home.tsx';
 import './App.css'
 import Product from './Components/Product.tsx';
 import BascketMain from './Components/BascketMain.tsx';
+import { ProductCountProvider } from './Components/ProductCountContext.tsx';
+import { CookieDeleteProvider } from './Components/DeleteCookieContext.tsx';
+
 
 
 const router = createBrowserRouter([
@@ -13,7 +16,7 @@ const router = createBrowserRouter([
 {
 
 path: "/",
-element:<Home/>,
+element:<CookieDeleteProvider><ProductCountProvider><Home/></ProductCountProvider></CookieDeleteProvider>,
 errorElement: <div> 404 page not found</div>
 
 
@@ -21,7 +24,7 @@ errorElement: <div> 404 page not found</div>
 
 {
 path: "/items",
-element:<BascketMain/>,
+element:<CookieDeleteProvider><ProductCountProvider><BascketMain/></ProductCountProvider></CookieDeleteProvider>,
 errorElement: <div> 404 page not found</div>
 
 
@@ -31,7 +34,7 @@ errorElement: <div> 404 page not found</div>
 {
 
 path: "/product",
-element:<Product/>,
+element:<CookieDeleteProvider><ProductCountProvider><Product/></ProductCountProvider></CookieDeleteProvider>,
 errorElement: <div> 404 page not found</div>
 
 
@@ -43,6 +46,13 @@ errorElement: <div> 404 page not found</div>
 ReactDOM.createRoot(document.getElementById('root')!).render(
    <React.StrictMode>
     
-    <RouterProvider router={router}/>
+    
+
+    
+     <RouterProvider router={router}/>
+    
+
+     
+
    </React.StrictMode>,
 )

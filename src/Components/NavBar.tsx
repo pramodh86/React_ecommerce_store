@@ -1,7 +1,26 @@
 
 import {Link} from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { ProductCount } from './ProductCountContext';
+import { getCookieValue } from './Cookie';
+import { CookieDelete } from "./DeleteCookieContext"
 
 function NavBar() {
+
+  
+  let productCountContext = useContext(ProductCount)
+  let deleteCookieContext = useContext(CookieDelete)
+
+  useEffect(()=>{
+
+
+    let itemArray = getCookieValue("Pramodh")
+    productCountContext.setCount(itemArray?.length)
+
+  },[deleteCookieContext.cookieDelete])
+
+
+
   return (
     <>
     
@@ -17,7 +36,7 @@ function NavBar() {
                 </ul>
             </div>
             <div className="link-basket">
-            <Link to={"/items"}>Basket  <span id="index-cart-item-count-btn">(0)</span></Link>
+            <Link to={"/items"}>Basket  <span id="index-cart-item-count-btn">{productCountContext?.count}</span></Link>
             </div>
 
 

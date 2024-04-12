@@ -6,11 +6,11 @@ import Description from './Description'
 
 
 
-
 function Home() {
   return (
     <>
-    <NavBar></NavBar>
+     
+     <NavBar></NavBar>
     <Header></Header>
     <ImageGallary></ImageGallary>
     <Description></Description>

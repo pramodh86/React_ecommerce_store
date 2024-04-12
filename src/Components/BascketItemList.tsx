@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
-import { getCookieValue, updateCookie, getCookieValueAsync } from './Cookie'
+import { updateCookie, getCookieValueAsync } from './Cookie'
 import OrderSummary from './OrderSummary';
+import { useContext } from 'react'
+import { CookieDelete } from "./DeleteCookieContext"
+
 
 interface selectedItems {
 
@@ -18,11 +21,12 @@ interface selectedItems {
 function BascketItemList() {
 
 
-    //let selectedItemsList: selectedItems[] = []
+    
     let [selectedItemsList, setSelectedItemsList] = useState<selectedItems[]>([])
     let [numberOfItems, setNumberOfItems] = useState<boolean>(false)
     let [valueNumerOfItems, setValueNumerOfItems] = useState<string>("")
     let [totalAmount, setTotalAmount] = useState(0)
+    let deleteCookieContext = useContext(CookieDelete)
 
     let itemList: selectedItems[] = []
 
@@ -37,7 +41,7 @@ function BascketItemList() {
 
         itemList = await getCookieValueAsync("Pramodh")
         let status: boolean = await setSelectedItemsToState()
-        //calculateTotal()
+        console.log(status)
         let total = 0;
         itemList.map((item) => {
             total = total + (item.price * item.itemCount)
@@ -49,22 +53,20 @@ function BascketItemList() {
 
     useEffect(() => {
 
-        //selectedItemsList = getCookieValue("Pramodh")
-        //setSelectedItemsList(getCookieValue("Pramodh"))
-        //calculateTotal()
+        
         getItemsFromTheCookie()
-        //calculateTotal()
+       
         console.log("bascket page")
 
 
 
 
-    }, [numberOfItems])
+    }, [numberOfItems,deleteCookieContext.cookieDelete])
 
 
     function handleOnChangeItemCount(updatedID: number) {
 
-        //setNumberOfItems(itemCount)
+        
         let arrayToUpdate = [...selectedItemsList]
         arrayToUpdate.map((item) => {
 
@@ -194,44 +196,10 @@ function BascketItemList() {
 
 
                 </div>
-                {/* <OrderSummary total={totalAmount}></OrderSummary> */}
+                 <OrderSummary total={totalAmount}></OrderSummary> 
 
 
-                <div className="order-summary">
-                    <h3>Order summary</h3>
-                    <div className="total-wrapper margin-from-the-top-37">
-                        <div className="sub-total">Sub total</div>
-                        <div className="value" id="id-sub-total"><h2>{Math.round(totalAmount * 100) / 100}</h2></div>
-                    </div>
-                    <div className="total-wrapper margin-from-the-top-20">
-                        <div className="sub-total">Shipping</div>
-                        <div className="value">00.00</div>
-                    </div>
-                    <div className="total-wrapper margin-from-the-top-20">
-                        <div className="sub-total">Tax</div>
-                        <div className="value">00.00</div>
-                    </div>
-                    <div className="total-wrapper margin-from-the-top-20">
-                        <div className="sub-total">
-                            <h3>Total</h3>
-                        </div>
-                        <div className="value">
-                            <h3 id="id-total">$00.00</h3>
-                        </div>
-                    </div>
-                    <div className="payment-wrapper">
-
-                        <a href="#">Continue to payment</a>
-                        <a href="#"></a>
-                    </div>
-                    <div className="payment-wrapper" >
-
-                        <a href="#" >Clear Cart</a>
-                        <a href="#"></a>
-                    </div>
-
-
-                </div>
+                
 
 
 
