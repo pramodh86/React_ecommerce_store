@@ -2,12 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
-import Home from './Components/Home.tsx';
+import Home from './Pages/Home.tsx';
 import './App.css'
-import Product from './Components/Product.tsx';
-import BascketMain from './Components/BascketMain.tsx';
-import { ProductCountProvider } from './Components/ProductCountContext.tsx';
-import { CookieDeleteProvider } from './Components/DeleteCookieContext.tsx';
+import Product from './Pages/Product.tsx';
+import BascketMain from './Pages/Bascket.tsx';
+import { ProductCountProvider } from './Context/ProductCountContext.tsx';
+import { CookieDeleteProvider } from './Context/DeleteCookieContext.tsx';
 
 
 

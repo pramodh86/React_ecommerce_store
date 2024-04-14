@@ -1,6 +1,6 @@
 
-import image1 from "../images/home_image_1.png"
-import image2 from "../images/home_image_2.png"
+import image1 from "../../images/home_image_1.png"
+import image2 from "../../images/home_image_2.png"
 
 function ImageGallary() {
   return (

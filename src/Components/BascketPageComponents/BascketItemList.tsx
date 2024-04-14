@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { updateCookie, getCookieValueAsync } from './Cookie'
+import { updateCookie, getCookieValueAsync } from '../../Utills/Cookie'
 import OrderSummary from './OrderSummary';
 import { useContext } from 'react'
-import { CookieDelete } from "./DeleteCookieContext"
+import { CookieDelete } from "../../Context/DeleteCookieContext"
 
 
 interface selectedItems {

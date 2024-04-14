@@ -1,8 +1,8 @@
 
 
-import { deleteCookie } from "./Cookie"
+import { deleteCookie } from "../../Utills/Cookie"
 import { useContext } from 'react'
-import { CookieDelete } from "./DeleteCookieContext"
+import { CookieDelete } from "../../Context/DeleteCookieContext"
 
 interface Props{
     total:number

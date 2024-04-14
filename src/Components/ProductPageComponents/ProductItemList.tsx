@@ -2,11 +2,11 @@
 
 import  { useEffect, useState } from 'react'
 import axios from 'axios'
-import loadingGIF from "../images/loading.gif"
-import {setCookie} from './Cookie'
-import { ProductCount } from './ProductCountContext'
+import loadingGIF from "../../images/loading.gif"
+import {setCookie} from '../../Utills/Cookie'
+import { ProductCount } from '../../Context/ProductCountContext'
 import { useContext } from 'react'
-import { CookieDelete } from "./DeleteCookieContext"
+import { CookieDelete } from "../../Context/DeleteCookieContext"
 
 
 

@@ -1,9 +1,9 @@
 
 import {Link} from 'react-router-dom';
 import { useContext, useEffect } from 'react';
-import { ProductCount } from './ProductCountContext';
-import { getCookieValue } from './Cookie';
-import { CookieDelete } from "./DeleteCookieContext"
+import { ProductCount } from '../../Context/ProductCountContext';
+import { getCookieValue } from '../../Utills/Cookie';
+import { CookieDelete } from "../../Context/DeleteCookieContext"
 
 function NavBar() {
 
